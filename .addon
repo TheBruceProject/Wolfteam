@@ -14,7 +14,7 @@
   "RootNamespace": "Sandbox",
   "Metadata": {
     "MapList": [
-      "facepunch.flatgrass"
+      "local.arrival"
     ],
     "PerMapRanking": false,
     "LeaderboardType": "None",
