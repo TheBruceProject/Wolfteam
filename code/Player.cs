@@ -6,6 +6,7 @@ partial class SandboxPlayer : Player
 	private TimeSince timeSinceJumpReleased;
 
 	private DamageInfo lastDamage;
+	private int respawned = 0;
 
 	/// <summary>
 	/// The clothing container is what dresses the citizen
@@ -31,7 +32,7 @@ partial class SandboxPlayer : Player
 
 	public override void Respawn()
 	{
-		SetModel( "models/citizen/citizen.vmdl" );
+		
 
 		Controller = new WalkController();
 
@@ -45,14 +46,14 @@ partial class SandboxPlayer : Player
 		EnableHideInFirstPerson = true;
 		EnableShadowInFirstPerson = true;
 
-		Clothing.DressEntity( this );
+		SetModel( "models/citizen/citizen.vmdl" );
 
-		Inventory.Add( new PhysGun(), true );
-		Inventory.Add( new GravGun() );
-		Inventory.Add( new Tool() );
-		Inventory.Add( new Pistol() );
+		Inventory.Add( new SMG() );
+		Inventory.Add( new Pistol() );		
+		Inventory.Add( new Wolf() );				
 		Inventory.Add( new Flashlight() );
-		Inventory.Add( new Fists() );
+		
+		
 
 		CameraMode = new FirstPersonCamera();
 
@@ -123,6 +124,12 @@ partial class SandboxPlayer : Player
 	public override void Simulate( Client cl )
 	{
 		base.Simulate( cl );
+		if(respawned == 0 )
+		{
+			
+			
+			respawned = 1;
+		}
 
 		if ( Input.ActiveChild != null )
 		{
@@ -181,6 +188,36 @@ partial class SandboxPlayer : Player
 		{
 			timeSinceJumpReleased = 1;
 		}
+		if( Input.Pressed( InputButton.Slot3 ) )
+		{
+			SetModel( "models/ball/ball.vmdl" );
+			CameraMode = new ThirdPersonCamera();
+			
+
+
+		}
+		if( Input.Pressed( InputButton.Slot1 ) )
+		{
+			SetModel( "models/citizen/citizen.vmdl" );
+			CameraMode = new FirstPersonCamera();
+			
+
+		}
+		if ( Input.Pressed( InputButton.Slot2 ) )
+		{
+			SetModel( "models/citizen/citizen.vmdl" );
+			CameraMode = new FirstPersonCamera();
+			
+
+		}
+		if ( Input.Pressed( InputButton.Slot4 ) )
+		{
+			SetModel( "models/citizen/citizen.vmdl" );
+			CameraMode = new FirstPersonCamera();
+			
+
+		}
+
 	}
 
 	Entity lastWeapon;
