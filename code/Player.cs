@@ -4,6 +4,7 @@ partial class SandboxPlayer : Player
 {
 	private TimeSince timeSinceDropped;
 	private TimeSince timeSinceJumpReleased;
+	private string playerModel = "models/citizen/citizen.vmdl";
 
 	private DamageInfo lastDamage;
 	private int respawned = 0;
@@ -46,12 +47,13 @@ partial class SandboxPlayer : Player
 		EnableHideInFirstPerson = true;
 		EnableShadowInFirstPerson = true;
 
-		SetModel( "models/citizen/citizen.vmdl" );
+		SetModel( playerModel );
 
 		Inventory.Add( new SMG() );
 		Inventory.Add( new Pistol() );		
 		Inventory.Add( new Wolf() );				
 		Inventory.Add( new Flashlight() );
+		Inventory.Add( new PhysGun() );
 		
 		
 
@@ -190,7 +192,7 @@ partial class SandboxPlayer : Player
 		}
 		if( Input.Pressed( InputButton.Slot3 ) )
 		{
-			SetModel( "models/ball/ball.vmdl" );
+			playerModel = "models/citizen/citizen.vmdl";
 			CameraMode = new ThirdPersonCamera();
 			
 
@@ -198,21 +200,22 @@ partial class SandboxPlayer : Player
 		}
 		if( Input.Pressed( InputButton.Slot1 ) )
 		{
-			SetModel( "models/citizen/citizen.vmdl" );
+			
 			CameraMode = new FirstPersonCamera();
+			
 			
 
 		}
 		if ( Input.Pressed( InputButton.Slot2 ) )
 		{
-			SetModel( "models/citizen/citizen.vmdl" );
+			
 			CameraMode = new FirstPersonCamera();
 			
 
 		}
 		if ( Input.Pressed( InputButton.Slot4 ) )
 		{
-			SetModel( "models/citizen/citizen.vmdl" );
+			
 			CameraMode = new FirstPersonCamera();
 			
 
